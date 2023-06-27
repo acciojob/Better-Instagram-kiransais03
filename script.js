@@ -1,4 +1,3 @@
-//your code here
 function allowDrop(even) {
   even.preventDefault();
 }
@@ -9,6 +8,17 @@ function drag(even) {
 
 function drop(even) {
   even.preventDefault();
-  const fetchData = even.dataTransfer.getData("text");
-  even.target.appendChild(document.getElementById(fetchData));
+  const fetchDataId = even.dataTransfer.getData("text");
+  let dragelem = document.getElementById(fetchDataId);
+  let dropelem = document.getElementById(even.target.id);
+  //swapping id's
+  let tempcurrId=even.target.id;
+  dropelem.id=dragelem.id;
+  dragelem.id=tempcurrId;
+ 
+  //swapping innerText
+  let temptext=dropelem.innerText;
+  dropelem.innerText=dragelem.innerText;
+  dragelem.innerText=temptext;
+  
 }
